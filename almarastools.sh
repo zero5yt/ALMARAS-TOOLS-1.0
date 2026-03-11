@@ -90,18 +90,23 @@ while true; do
         read -p "Press Enter..."
 
     elif [ "$choice" = "8" ]; then
+        echo "Pumili ng upload type:"
+        echo "  A. Upload as VIDEO (may preview/thumbnail)"
+        echo "  B. Upload as FILE (mas mabilis)"
+        read -p "Type A or B: " upload_type
         read -p "Full path to file: " video_path
         read -p "Caption: " caption
+        
         if [ -f "$video_path" ]; then
-            curl -s -X POST "https://api.telegram.org/bot$bot_token/sendVideo" \
-                 -F chat_id="$channel_chat_id" \
-                 -F video=@"$video_path" \
-                 -F caption="$caption"
-            echo -e "\nUpload Done."
+            if [ "$upload_type" = "A" ] || [ "$upload_type" = "a" ]; then
+                python3 "$SCRIPT_DIR/uploadvideo.py" "$video_path" "samplelangitoalmaras" "$caption"
+            else
+                python3 "$SCRIPT_DIR/uploadfile.py" "$video_path" "samplelangitoalmaras" "$caption"
+            fi
         else
             echo "Error: File not found."
         fi
-        read -p "Press Enter..."
+        read -p "Press Enter to continue..."
 
     elif [ "$choice" = "0" ]; then
         exit 0
