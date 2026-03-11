@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# --- CONFIG LOADING ---
-SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-if [ -f "$SCRIPT_DIR/config.sh" ]; then
-    source "$SCRIPT_DIR/config.sh"
-else
-    
-fi
-# ----------------------
-
 # Default Folder Path
 BASE_DIR="/sdcard/Download/ATOOLS"
 
