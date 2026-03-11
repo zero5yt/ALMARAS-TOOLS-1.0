@@ -12,6 +12,18 @@ fi
 
 # Default Folder Path
 BASE_DIR="/sdcard/Download/ATOOLS"
+
+# Check kung na-setup ang storage, kung hindi, babalaan ang user
+if [ ! -d "/sdcard/Download" ]; then
+    echo "============================================"
+    echo "  NOTE: Ka Streamix Kailangan mo munang i-run ang:"
+    echo "  'termux-setup-storage'"
+    echo "  sa iyong Termux bago gamitin ang tools."
+    echo "============================================"
+    exit 1
+fi
+
+# Auto-create ang folder
 mkdir -p "$BASE_DIR"
 
 while true; do
