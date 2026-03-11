@@ -13,7 +13,7 @@ Install:
 
 pkg update -y
 pkg install git -y
-git clone https://github.com/YOURUSERNAME/almaras-tools
+git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0/tree/main
 cd almaras-tools
 bash install.sh
 bash almarastools.sh
