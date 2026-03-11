@@ -32,9 +32,13 @@ clean_menu() {
     echo "  6  Update yt-dlp"
     echo "  7  Combine M4S Video + Audio"
     echo "  8  Upload to RoderickMovies (Channel)"
+    echo "  9  Reset Login Session"
     echo "  0  Exit"
     echo ""
+}
 
+while true; do
+    clean_menu
     read -p "Choose option: " choice
 
     if [ "$choice" = "1" ]; then
