@@ -19,7 +19,8 @@
 
 ### 🛠 INSTALLATION
 
-bash
+//bash
+
 pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0 && cd ALMARAS-TOOLS-1.0 && bash install.sh
 🔑 HOW TO SETUP
 
