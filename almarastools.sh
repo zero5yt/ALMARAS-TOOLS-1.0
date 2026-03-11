@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# ---- NAKA-SAVE NA DITO ANG IYONG MGA DETALYE ----
-bot_token="7463088178:AAEAgZuvSucbWBNCliX7ZH8XcOdYb-BAs2k"
-channel_chat_id="-1003738730141"
+# Ito ang dapat mong ilagay sa main script (lines 4-5)
+if [ -f config.sh ]; then
+    source config.sh
+else
+    echo "Error: Wala kang config.sh file!"
+    exit 1
+fi
 # --------------------------------------------------
 
 source logo.sh
