@@ -3,15 +3,19 @@
 clear
 echo "Installing ALMARAS TOOLS..."
 
-pkg update -y
-pkg upgrade -y
+# I-update ang system
+pkg update -y && pkg upgrade -y
 
-pkg install git python ffmpeg -y
+pkg install -y git python ffmpeg ncurses-utils pv
 
-pip install yt-dlp
+# I-upgrade ang pip at i-install ang yt-dlp
+pip install --upgrade pip
+pip install -U yt-dlp
 
+# I-setup ang storage
 termux-setup-storage
 
+# Gawing executable ang files
 chmod +x almarastools.sh
 chmod +x logo.sh
 
