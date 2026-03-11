@@ -16,7 +16,6 @@ fi
 
 # Auto-create ang folder
 mkdir -p "$BASE_DIR"
-# Ilagay ito sa pinakataas ng almarastools.sh
 clean_menu() {
     clear
     tput cup 0 0
@@ -96,7 +95,7 @@ clean_menu() {
         echo "  A. Upload as VIDEO (may preview/thumbnail)"
         echo "  B. Upload as FILE (mas mabilis)"
         read -p "Type A or B: " upload_type
-        read -p "Full path to file: " video_path
+        read -p "Full path Copy mo To👉 /sdcard/Download/ATOOLS/videonamemo.mp4 👈: " video_path
         read -p "Caption: " caption
         
         if [ -f "$video_path" ]; then
@@ -109,6 +108,27 @@ clean_menu() {
             echo "Error: File not found."
         fi
         read -p "Press Enter to continue..."
+        clean_menu
+
+        elif [ "$choice" = "9" ]; then
+        clear
+        echo "--- RESET SYSTEM ---"
+        echo "1. Reset Login Session Only (Keep API ID/Hash)"
+        echo "2. Full Factory Reset (Delete API ID/Hash & Session)"
+        read -p "Select option (1 or 2): " reset_choice
+        
+        if [ "$reset_choice" = "1" ]; then
+            rm -f user_session.session
+            echo "Session reset. You will only re-login via OTP."
+        elif [ "$reset_choice" = "2" ]; then
+            rm -f user_session.session
+            rm -f config_api.txt
+            echo "Full Reset! You will re-enter API ID/Hash and login."
+        else
+            echo "Invalid choice."
+        fi
+        
+        sleep 2
         clean_menu
 
     elif [ "$choice" = "0" ]; then
