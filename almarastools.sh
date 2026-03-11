@@ -126,6 +126,15 @@ clean_menu() {
             read -p "Press Enter to continue..."
         fi
         clean_menu
+
+elif [ "$choice" = "9" ]; then
+        clear
+        rm -f user_session.session
+        rm -f config_api.txt
+        echo "--- LOGIN RESET SUCCESSFUL ---"
+        sleep 1
+        clean_menu
+        
     elif [ "$choice" = "0" ]; then
         exit 0
     fi
