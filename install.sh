@@ -22,7 +22,7 @@ termux-setup-storage
 
 # 4. Upgrade pip at install ng Python libraries
 echo "[*] Installing python libraries..."
-pip install --upgrade pip
+
 pip install -U yt-dlp telethon
 
 # 5. Gawing executable ang scripts
