@@ -19,7 +19,7 @@ read -p "Choose option: " choice
 
 if [ "$choice" = "1" ]; then
   read -p "Paste Facebook Link: " link
-  yt-dlp -f "hd/bestvideo+bestaudio/best" -P /sdcard/Download "$link"
+  yt-dlp -f "hd/bestvideo+bestaudio/best" -P /sdcard/Download/ATOOLS "$link"
 fi
 
 if [ "$choice" = "2" ]; then
@@ -63,7 +63,7 @@ if [ "$choice" = "7" ]; then
 
   # Tinitingnan kung may video.m4s at audio.m4s sa folder
   if [ -f "$video_file" ] && [ -f "$audio_file" ]; then
-    echo "Combining video.m4s and audio.m4s..."
+    echo "almaras Combining 1video.m4s and 1audio.m4s into mp4..."
     # Ang output file ay ipapangalan base sa pangalan ng folder at ise-save sa loob din nito
     output_name=$(basename "$m4s_folder")
     ffmpeg -i "$video_file" -i "$audio_file" -c copy "$m4s_folder/$output_name.mp4"
