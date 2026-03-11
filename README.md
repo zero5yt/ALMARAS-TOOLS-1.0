@@ -9,7 +9,6 @@
 
 </div>
 
----
 
 # 🚀 ALMARAS-TOOLS V1.0
 
@@ -17,11 +16,10 @@
   <i>The Ultimate Telegram Upload & Video Tool for Termux</i>
 </p>
 
----
 
 ### 🛠 INSTALLATION
 
-```bash
+bash
 pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0 && cd ALMARAS-TOOLS-1.0 && bash install.sh
 🔑 HOW TO SETUP
 
