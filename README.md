@@ -1,21 +1,26 @@
-![ALMARAS TOOLS](banner.png)
+# 🚀 ALMARAS-TOOLS V1.0
 
-# ALMARAS TOOLS v1.0
+<div align="center">
+  <h3>✨ WELCOME TO ALMARAS-TOOLS V1.0 ✨</h3>
+  <p><i>The Ultimate Telegram Upload & Video Tool for Termux</i></p>
+</div>
 
-Termux video toolkit.
+---
 
-Features:
-- Download Facebook Video
-- Combine Video + Audio
-- Convert MKV to MP4
-- Cut Video
-- Add Subtitle
+### 🛠 INSTALLATION
+1. `pkg update && pkg upgrade`
+2. `pkg install git python ffmpeg`
+3. `git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0`
+4. `cd ALMARAS-TOOLS-1.0`
+5. `pip install telethon yt-dlp`
 
-Install:
+### 🔑 HOW TO SETUP
+1. Go to [my.telegram.org](https://my.telegram.org)
+2. Create an App to get your **API ID** and **API HASH**.
+3. Run the tool: `./almarastools.sh`
+4. Enter your details when prompted.
 
-pkg update -y
-pkg install git -y
-git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0
-cd almaras-tools
-bash install.sh
-bash almarastools.sh
+---
+
+### ⚠️ WARNING
+**USE AT YOUR OWN RISK.** This tool uses your personal Telegram account to bypass API limits. Do not share your `user_session.session` file with anyone!
