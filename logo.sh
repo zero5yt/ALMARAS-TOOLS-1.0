@@ -1,9 +1,23 @@
-# logo.sh
-for i in {1..3}; do
-    echo -e "\e[1;32m   WELCOME TO ALMARAS-TOOLS V1.0 \e[0m"
-    sleep 0.2
-    echo -e "\e[1;36m   WELCOME TO ALMARAS-TOOLS V1.0 \e[0m"
-    sleep 0.2
-done
-# Siguraduhin na natatapos ang logo sa isang static na kulay
-echo -e "\e[1;32m   WELCOME TO ALMARAS-TOOLS V1.0 \e[0m"
+#!/bin/bash
+
+# Kulay Green (Hacker Style)
+GREEN="\e[1;32m"
+RESET="\e[0m"
+
+# Ilagay ang cursor sa top-left ng screen
+tput cup 0 0
+
+# I-print ang ASCII art mo
+echo -e "${GREEN}"
+cat << "EOF"
+    :::     :::        ::::    ::::      :::     :::::::::      :::      ::::::::  
+  :+: :+:   :+:        +:+:+: :+:+:+   :+: :+:   :+:    :+:   :+: :+:   :+:    :+: 
+ +:+   +:+  +:+        +:+ +:+:+ +:+  +:+   +:+  +:+    +:+  +:+   +:+  +:+        
++#++:++#++: +#+        +#+  +:+  +#+ +#++:++#++: +#++:++#:  +#++:++#++: +#++:++#++ 
++#+     +#+ +#+        +#+       +#+ +#+     +#+ +#+    +#+ +#+     +#+        +#+ 
+#+#     #+# #+#        #+#       #+# #+#     #+# #+#    #+# #+#     #+# #+#    #+# 
+###     ### ########## ###       ### ###     ### ###    ### ###     ###  ########  
+
+               --- ALMARAS TOOLS V1.0 ---
+EOF
+echo -e "${RESET}"
