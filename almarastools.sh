@@ -16,13 +16,9 @@ fi
 
 # Auto-create ang folder
 mkdir -p "$BASE_DIR"
-
-# Ilagay ang clear sa labas ng loop para isang beses lang mag-clear
 clear
 
 while true; do
-    # Gamitin ang tput cup para laging sa top left magsimula ang print
-    # tput cup 0 0 = ilipat ang cursor sa row 0, column 0
     tput cup 0 0
     
     # I-source ang logo (dapat walang 'clear' sa loob nito)
