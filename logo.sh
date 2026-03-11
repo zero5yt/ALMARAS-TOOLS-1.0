@@ -19,5 +19,6 @@ cat << "EOF"
 ###     ### ########## ###       ### ###     ### ###    ### ###     ###  ########  
 
                --- ALMARAS TOOLS V1.0 ---
+🔥please follow streamixph on facebook and youtube thanks🔥
 EOF
 echo -e "${RESET}"
