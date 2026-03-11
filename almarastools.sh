@@ -16,16 +16,13 @@ fi
 
 # Auto-create ang folder
 mkdir -p "$BASE_DIR"
-clear
-
-while true; do
+# Ilagay ito sa pinakataas ng almarastools.sh
+clean_menu() {
+    clear
     tput cup 0 0
-    
-    # I-source ang logo (dapat walang 'clear' sa loob nito)
     source "$SCRIPT_DIR/logo.sh"
-    
-    # I-print ang menu...
     echo -e "\n"
+}
     echo "  [Work Folder: $BASE_DIR]"
     echo ""
     echo "  1  Download Facebook Video"
@@ -45,6 +42,7 @@ while true; do
         read -p "Enter FB URL: " fb_url
         yt-dlp -o "$BASE_DIR/%(title)s.%(ext)s" "$fb_url"
         read -p "Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "2" ]; then
         read -p "Video file name (nasa loob ng ATOOLS): " v_name
@@ -52,11 +50,13 @@ while true; do
         ffmpeg -i "$BASE_DIR/$v_name" -i "$BASE_DIR/$a_name" -c copy "$BASE_DIR/combined.mp4"
         echo "Saved: $BASE_DIR/combined.mp4"
         read -p "Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "3" ]; then
         read -p "MKV file name (nasa loob ng ATOOLS): " mkv_name
         ffmpeg -i "$BASE_DIR/$mkv_name" -c copy "$BASE_DIR/${mkv_name%.*}.mp4"
         read -p "Done! Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "4" ]; then
         read -p "File name: " c_name
@@ -64,16 +64,19 @@ while true; do
         read -p "Duration (seconds): " dur
         ffmpeg -i "$BASE_DIR/$c_name" -ss "$s_time" -t "$dur" -c copy "$BASE_DIR/cut_video.mp4"
         read -p "Saved as cut_video.mp4. Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "5" ]; then
         read -p "Video name: " v_name
         read -p "Subtitle (.srt) name: " s_name
         ffmpeg -i "$BASE_DIR/$v_name" -i "$BASE_DIR/$s_name" -c copy -c:s srt "$BASE_DIR/output_sub.mkv"
         read -p "Done! Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "6" ]; then
         pip install -U yt-dlp
         read -p "Updated! Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "7" ]; then
         read -p "Folder name (nasa loob ng ATOOLS): " sub_folder
@@ -86,6 +89,7 @@ while true; do
             echo "Error: Hindi mahanap ang video.m4s/audio.m4s sa $sub_folder"
         fi
         read -p "Press Enter..."
+        clean_menu
 
     elif [ "$choice" = "8" ]; then
         echo "Pumili ng upload type:"
@@ -105,6 +109,7 @@ while true; do
             echo "Error: File not found."
         fi
         read -p "Press Enter to continue..."
+        clean_menu
 
     elif [ "$choice" = "0" ]; then
         exit 0
