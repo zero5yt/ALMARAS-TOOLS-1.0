@@ -26,10 +26,19 @@ while true; do
 
     read -p "Choose option: " choice
 
-    if [ "$choice" = "1" ]; then
+    elif [ "$choice" = "1" ]; then
         read -p "Enter Facebook Video URL: " fb_url
-        yt-dlp "$fb_url"
-        read -p "Done! Press Enter to continue..."
+        read -p "Enter Download folder path (e.g., /sdcard/Download/ATOOLS): " dl_folder
+        
+        # Gawin ang folder kung wala pa
+        mkdir -p "$dl_folder"
+        
+        echo "Downloading to $dl_folder..."
+        # I-download gamit ang title ng video at lagay sa specific folder
+        yt-dlp -o "$dl_folder/%(title)s.%(ext)s" "$fb_url"
+        
+        echo "Download finished!"
+        read -p "Press Enter to continue..."
         
     elif [ "$choice" = "2" ]; then
         read -p "Enter Video file path: " v_path
