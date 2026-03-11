@@ -47,8 +47,8 @@ if [ "$choice" = "8" ]; then
     pkg install curl -y
   fi
   
-  read -p "Copy mo then paste change 👉 movie.mp4/storage/emulated/0/Download/ATOOLS/movie.mp4 👈: " video_path
-  read -p "Enter a caption (optional): " caption
+  read -p "Copy mo then paste change Path And Video Name 👉 /storage/emulated/0/Download/ATOOLS/movie.mp4 👈: " video_path
+  read -p "Enter a Title (optional): " Title
 
   if [ -f "$video_path" ]; then
     echo "Uploading to RoderickMovies... Please wait."
