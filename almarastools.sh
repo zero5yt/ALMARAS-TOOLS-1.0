@@ -5,8 +5,7 @@ SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 if [ -f "$SCRIPT_DIR/config.sh" ]; then
     source "$SCRIPT_DIR/config.sh"
 else
-    echo "Error: config.sh not found!"
-    exit 1
+    
 fi
 # ----------------------
 
