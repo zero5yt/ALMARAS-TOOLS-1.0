@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 # Default Folder Path
 BASE_DIR="/sdcard/Download/ATOOLS"
 
