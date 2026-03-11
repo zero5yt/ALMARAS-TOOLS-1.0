@@ -22,12 +22,7 @@
 ### 🛠 INSTALLATION
 
 ```bash
-pkg update && pkg upgrade
-pkg install git python ffmpeg
-git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0
-cd ALMARAS-TOOLS-1.0
-pip install telethon yt-dlp
-chmod +x almarastools.sh
+pkg update && pkg upgrade -y && pkg install git -y && git clone https://github.com/zero5yt/ALMARAS-TOOLS-1.0 && cd ALMARAS-TOOLS-1.0 && bash install.sh
 🔑 HOW TO SETUP
 
 Go to my.telegram.org and login with your phone number.
