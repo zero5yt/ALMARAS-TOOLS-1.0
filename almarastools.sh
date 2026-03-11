@@ -14,13 +14,12 @@ if [ ! -d "/sdcard/Download" ]; then
     exit 1
 fi
 
-# Auto-create ang folder
-mkdir -p "$BASE_DIR"
 clean_menu() {
     clear
     tput cup 0 0
     source "$SCRIPT_DIR/logo.sh"
     echo -e "\n"
+    # LAHAT NG ECHO NA NASA LABAS, ILAGAY MO DITO SA LOOB NG FUNCTION:
     echo "  [Work Folder: $BASE_DIR]"
     echo ""
     echo "  1  Download Facebook Video"
