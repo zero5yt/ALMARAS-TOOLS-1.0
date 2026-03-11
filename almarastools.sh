@@ -99,38 +99,33 @@ clean_menu() {
         read -p "Caption: " caption
         
         if [ -f "$video_path" ]; then
+            clear
+            echo "[*] Uploading, please wait..."
+            
+            # Patakbuhin ang script
             if [ "$upload_type" = "A" ] || [ "$upload_type" = "a" ]; then
                 python3 "$SCRIPT_DIR/uploadvideo.py" "$video_path" "samplelangitoalmaras" "$caption"
             else
                 python3 "$SCRIPT_DIR/uploadfile.py" "$video_path" "samplelangitoalmaras" "$caption"
             fi
+            
+            # Dito natin chine-check kung nag-error ang Python script
+            if [ $? -ne 0 ]; then
+                echo ""
+                echo "----------------------------------------------------"
+                echo " [!] UPLOAD FAILED! "
+                echo " [!] Possible cause: Wrong API ID/HASH or Expired Session."
+                echo " [!] SOLUTION: Go to Option 9 to RESET your LOGIN."
+                echo "----------------------------------------------------"
+                read -p "Press Enter to return to menu..."
+            else
+                read -p "Upload Successful! Press Enter..."
+            fi
         else
             echo "Error: File not found."
+            read -p "Press Enter to continue..."
         fi
-        read -p "Press Enter to continue..."
         clean_menu
-
-        elif [ "$choice" = "9" ]; then
-        clear
-        echo "--- RESET SYSTEM ---"
-        echo "1. Reset Login Session Only (Keep API ID/Hash)"
-        echo "2. Full Factory Reset (Delete API ID/Hash & Session)"
-        read -p "Select option (1 or 2): " reset_choice
-        
-        if [ "$reset_choice" = "1" ]; then
-            rm -f user_session.session
-            echo "Session reset. You will only re-login via OTP."
-        elif [ "$reset_choice" = "2" ]; then
-            rm -f user_session.session
-            rm -f config_api.txt
-            echo "Full Reset! You will re-enter API ID/Hash and login."
-        else
-            echo "Invalid choice."
-        fi
-        
-        sleep 2
-        clean_menu
-
     elif [ "$choice" = "0" ]; then
         exit 0
     fi
