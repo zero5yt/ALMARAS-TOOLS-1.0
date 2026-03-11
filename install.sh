@@ -1,26 +1,39 @@
 #!/bin/bash
 
+# Clear screen para malinis ang simula
 clear
-echo "Installing ALMARAS TOOLS..."
 
-# I-update ang system
+echo "=========================================="
+echo "      INSTALLING ALMARAS TOOLS V1.0      "
+echo "=========================================="
+echo ""
+
+# 1. Update at Upgrade ng system
+echo "[*] Updating system..."
 pkg update -y && pkg upgrade -y
 
+# 2. Install ng mga kailangang packages (ncurses-utils = tput, pv = animation)
+echo "[*] Installing required packages..."
 pkg install -y git python ffmpeg ncurses-utils pv
 
-# I-upgrade ang pip at i-install ang yt-dlp
-pip install --upgrade pip
-pip install -U yt-dlp
-
-# I-setup ang storage
+# 3. Setup Storage (para makapag-save sa /sdcard/Download)
+echo "[*] Setting up storage..."
 termux-setup-storage
 
-# Gawing executable ang files
+# 4. Upgrade pip at install ng Python libraries
+echo "[*] Installing python libraries..."
+pip install --upgrade pip
+pip install -U yt-dlp telethon
+
+# 5. Gawing executable ang scripts
+echo "[*] Setting permissions..."
 chmod +x almarastools.sh
 chmod +x logo.sh
 
 echo ""
-echo "Installation complete!"
-echo ""
+echo "=========================================="
+echo "         INSTALLATION COMPLETE!          "
+echo "=========================================="
 echo "Run the tool using:"
 echo "bash almarastools.sh"
+echo "=========================================="
