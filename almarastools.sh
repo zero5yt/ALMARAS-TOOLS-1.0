@@ -52,7 +52,7 @@ if [ "$choice" = "8" ]; then
   fi
   
   read -p "Copy mo then paste change Path And Video Name 👉 /storage/emulated/0/Download/ATOOLS/movie.mp4 👈: " video_path
-  read -p "Enter a Title (optional): " Title
+  read -p "Enter a Title (caption): " caption
 
   if [ -f "$video_path" ]; then
     echo "Uploading to RoderickMovies... Please wait."
