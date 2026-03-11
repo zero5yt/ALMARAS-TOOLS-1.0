@@ -21,7 +21,6 @@ clean_menu() {
     tput cup 0 0
     source "$SCRIPT_DIR/logo.sh"
     echo -e "\n"
-}
     echo "  [Work Folder: $BASE_DIR]"
     echo ""
     echo "  1  Download Facebook Video"
