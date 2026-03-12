@@ -25,15 +25,18 @@ echo "[*] Installing python libraries..."
 
 pip install -U yt-dlp telethon
 
-# 5. Gawing executable ang scripts
-echo "[*] Setting permissions..."
+# 5. Gawing executable ang lahat ng scripts
+echo "[*] Setting up permissions..."
 chmod +x almarastools.sh
 chmod +x logo.sh
+chmod +x upload_aby.sh
+# Ang mga .py ay hindi kailangan ng chmod +x, pero okay lang na i-add
 
 echo ""
 echo "=========================================="
-echo "         INSTALLATION COMPLETE!          "
+echo "     INSTALLATION COMPLETE COPY TO RUN!          "
 echo "=========================================="
 echo "Run the tool using:"
 echo "bash almarastools.sh"
+echo "./almarastools.sh"
 echo "=========================================="
