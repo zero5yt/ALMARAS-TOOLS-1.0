@@ -7,7 +7,7 @@ FLD_ID="vwJ2zBCl5c"
 # 1. Hingi ng API Key kung wala pa
 if [ ! -f "$KEY_FILE" ]; then
     echo "--- ABYSS SETUP ---"
-    read -p "Enter Abyss API Key: " abyss_key
+    read -p "Enter Aby API Key: " abyss_key
     echo "$abyss_key" > "$KEY_FILE"
 fi
 
@@ -24,12 +24,12 @@ wget -O "$FILENAME" "$URL"
 
 # 4. Upload sa Abyss gamit ang tamang filename
 if [ -f "$FILENAME" ]; then
-    echo "Uploading to Abyss..."
-    curl -# -F "file=@$FILENAME;filename=$FILENAME" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
+    echo "Uploading to Aby..."
+    pv "$FILENAME" | curl -F "file=@-;filename=$FILENAME" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
     
     # 5. Clean up (Burahin ang file pagkatapos ma-upload)
     rm "$FILENAME"
-    echo -e "\nUpload to Abyss Done!"
+    echo -e "\nUpload to Aby Done!"
 else
     echo "Error: Download failed."
 fi
