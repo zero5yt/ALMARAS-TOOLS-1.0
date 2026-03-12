@@ -30,7 +30,8 @@ clean_menu() {
     echo "  6  Update yt-dlp"
     echo "  7  Combine M4S Video + Audio"
     echo "  8  Upload to RoderickMovies (Channel)"
-    echo "  9  Reset Login Session"
+    echo "  9  Upload Aby"
+    echo "  10  Reset Login Session"
     echo "  0  Exit"
     echo ""
 }
@@ -128,8 +129,12 @@ while true; do
             read -p "Press Enter to continue..."
         fi
         
-
-elif [ "$choice" = "9" ]; then
+        elif [ "$choice" = "9" ]; then
+        read -p "Enter Abyss Download Link: " link_url
+        bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
+        read -p "Press Enter to continue..."
+       
+elif [ "$choice" = "10" ]; then
         clear
         rm -f user_session.session
         rm -f config_api.txt
