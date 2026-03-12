@@ -41,7 +41,7 @@ while true; do
 
     if [ "$choice" = "1" ]; then
         read -p "Enter FB URL: " fb_url
-        yt-dlp -o "$BASE_DIR/%(title)s.%(ext)s" "$fb_url"
+        yt-dlp -f "bv+ba/b" -o "$BASE_DIR/%(title)s.mp4" "$fb_url"
         read -p "Press Enter..."
         
 
