@@ -1,7 +1,8 @@
 import os
 from telethon import TelegramClient
 import sys
-
+from telethon.errors import FloodWaitError
+import asyncio
 # --- SMART LOGIN: Hihingi ng API ID/Hash sa unang gamit ---
 if not os.path.exists("config_api.txt"):
     print("--- FIRST TIME SETUP ---")
@@ -27,10 +28,21 @@ async def main():
     entity = await client.get_entity(sys.argv[2])
     caption = sys.argv[3] if len(sys.argv) > 3 else ""
     
-    # force_document=False para maging VIDEO siya
-    await client.send_file(entity, sys.argv[1], caption=caption, force_document=False, progress_callback=callback)
-    print("\nUpload Success! ✅")
-
+    # --- DITO ANG UPGRADED LOGIC ---
+    try:
+        # Subukan ang upload
+        await client.send_file(entity, sys.argv[1], caption=caption, force_document=False, progress_callback=callback)
+        print("\nUpload Success! ✅")
+    except FloodWaitError as e:
+        # Kung na-limit ni Telegram, maghihintay siya automatic
+        print(f"\n[!] Telegram limit! Maghihintay ng {e.seconds} seconds...")
+        await asyncio.sleep(e.seconds)
+        # Mag-retry ng upload pagkatapos maghintay
+        await client.send_file(entity, sys.argv[1], caption=caption, force_document=False, progress_callback=callback)
+        print("\nUpload Success (After Retry)! ✅")
+    except Exception as e:
+        # Kung may ibang error (halimbawa: nawalan ng internet)
+        print(f"\n[!] Error sa pag-upload: {e}")
 if __name__ == '__main__':
     with client:
         client.loop.run_until_complete(main())
