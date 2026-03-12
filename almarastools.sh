@@ -31,7 +31,8 @@ clean_menu() {
     echo "  7  Combine M4S Video + Audio"
     echo "  8  Upload to RoderickMovies (Channel)"
     echo "  9  Upload Aby"
-    echo "  10  Reset Login Session"
+    echo "  10  Download Any Video (YT/FB/TikTok/Etc"
+    echo "  11  Reset Login Session"
     echo "  0  Exit"
     echo ""
 }
@@ -133,8 +134,23 @@ while true; do
         read -p "Enter Abyss Download Link: " link_url
         bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
         read -p "Press Enter to continue..."
+
+        elif [ "$choice" = "10" ] || [ "$choice" = "2" ]; then
+        read -p "Enter URL: " url
+        echo "Downloading in Best Quality (MP4)..."
+        
+        # -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv+ba/b" -> Pipilitin ang MP4 container
+        # --merge-output-format mp4 -> Siguradong MP4 ang output
+        # --add-metadata -> Para may info ang video
+        
+        yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv+ba/b" \
+               --merge-output-format mp4 \
+               --add-metadata \
+               -o "$BASE_DIR/%(title)s.%(ext)s" "$url"
+               
+        read -p "Download Finished! Press Enter to continue..."
        
-elif [ "$choice" = "10" ]; then
+elif [ "$choice" = "11" ]; then
         clear
         rm -f user_session.session
         rm -f config_api.txt
