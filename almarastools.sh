@@ -135,30 +135,26 @@ while true; do
         bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
         read -p "Press Enter to continue..."
 
-        elif [ "$choice" = "10" ] || [ "$choice" = "2" ]; then
+    elif [ "$choice" = "10" ]; then
         read -p "Enter URL: " url
         echo "Downloading in Best Quality (MP4)..."
-        
-        # -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv+ba/b" -> Pipilitin ang MP4 container
-        # --merge-output-format mp4 -> Siguradong MP4 ang output
-        # --add-metadata -> Para may info ang video
-        
         yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv+ba/b" \
                --merge-output-format mp4 \
                --add-metadata \
                -o "$BASE_DIR/%(title)s.%(ext)s" "$url"
-               
         read -p "Download Finished! Press Enter to continue..."
-       
-elif [ "$choice" = "11" ]; then
+
+    elif [ "$choice" = "11" ]; then
         clear
         rm -f user_session.session
         rm -f config_api.txt
         echo "--- LOGIN RESET SUCCESSFUL ---"
         sleep 1
-        
-        
+
     elif [ "$choice" = "0" ]; then
         exit 0
+    else
+        echo "Invalid option."
+        sleep 1
     fi
 done
