@@ -25,8 +25,7 @@ wget -O "$FILENAME" "$URL"
 # 4. Upload sa Abyss gamit ang tamang filename
 if [ -f "$FILENAME" ]; then
     echo "Uploading to Aby..."
-    pv "$FILENAME" | curl -F "file=@-;filename=$FILENAME" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
-    
+    curl -# -F "file=@$FILENAME;filename=$FILENAME;type=video/mp4" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
     # 5. Clean up (Burahin ang file pagkatapos ma-upload)
     rm "$FILENAME"
     echo -e "\nUpload to Aby Done!"
