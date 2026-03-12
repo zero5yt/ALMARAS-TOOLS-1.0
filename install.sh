@@ -14,8 +14,8 @@ pkg update -y && pkg upgrade -y
 
 # 2. Install ng mga kailangang packages (ncurses-utils = tput, pv = animation)
 echo "[*] Installing required packages..."
-pkg install -y git python ffmpeg ncurses-utils pv
 
+pkg install -y git python ffmpeg ncurses-utils pv curl wget
 # 3. Setup Storage (para makapag-save sa /sdcard/Download)
 echo "[*] Setting up storage..."
 termux-setup-storage
