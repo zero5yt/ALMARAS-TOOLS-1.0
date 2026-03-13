@@ -47,10 +47,30 @@ if [ "$free_space" -lt 500000 ]; then
 fi
     read -p "Choose option: " choice
 
-    if [ "$choice" = "1" ]; then
+    elif [ "$choice" = "1" ]; then
         read -p "Enter FB URL: " fb_url
-        yt-dlp --restrict-filenames -f "bestvideo+bestaudio/best" --merge-output-format mp4 -o "$BASE_DIR/%(uploader)s_%(title)s.%(ext)s" "$fb_url"
-        read -p "Press Enter..."
+        echo "Pumili ng Quality:"
+        echo "  A. BEST QUALITY (1080p, may merge process)"
+        echo "  B. STORAGE FRIENDLY (720p, direct download)"
+        read -p "Type A or B: " q_choice
+        
+        clear
+        echo "[*] Downloading, please wait..."
+        
+        if [ "$q_choice" = "A" ] || [ "$q_choice" = "a" ]; then
+            # Command para sa 1080p (Best Quality + Merge)
+            yt-dlp --restrict-filenames -f "bestvideo+bestaudio/best" --merge-output-format mp4 -o "$BASE_DIR/VIDEO_%(id)s.%(ext)s" "$fb_url"
+        else
+            # Command para sa 720p (Direct - No Merge)
+            yt-dlp --restrict-filenames -f "best" -o "$BASE_DIR/VIDEO_%(id)s.%(ext)s" "$fb_url"
+        fi
+        
+        if [ $? -eq 0 ]; then
+            echo "[*] Download Successful!"
+        else
+            echo "[!] Download Failed!"
+        fi
+        read -p "Press Enter to return to menu..."
         
 
     elif [ "$choice" = "2" ]; then
