@@ -47,7 +47,7 @@ if [ "$free_space" -lt 500000 ]; then
 fi
     read -p "Choose option: " choice
 
-    elif [ "$choice" = "1" ]; then
+    if [ "$choice" = "1" ]; then
         read -p "Enter FB URL: " fb_url
         echo "Pumili ng Quality:"
         echo "  A. BEST QUALITY (1080p, may merge process)"
