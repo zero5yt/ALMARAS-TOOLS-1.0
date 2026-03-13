@@ -39,6 +39,12 @@ clean_menu() {
 
 while true; do
     clean_menu
+    # Check kung may space pa (halimbawa, kung bababa sa 500MB, titigil)
+free_space=$(df /sdcard | awk 'NR==2 {print $4}')
+if [ "$free_space" -lt 500000 ]; then
+    echo "[!] WARNING: Low storage! Please free up space."
+    read -p "Press Enter..."
+fi
     read -p "Choose option: " choice
 
     if [ "$choice" = "1" ]; then
