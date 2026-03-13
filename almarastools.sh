@@ -43,13 +43,13 @@ while true; do
 
     if [ "$choice" = "1" ]; then
         read -p "Enter FB URL: " fb_url
-        yt-dlp --restrict-filenames -f "bestvideo+bestaudio/best" --merge-output-format mp4 -o "$BASE_DIR/%(title)s.%(ext)s" "$fb_url"
+        yt-dlp --restrict-filenames -f "bestvideo+bestaudio/best" --merge-output-format mp4 -o "$BASE_DIR/%(uploader)s_%(title)s.%(ext)s" "$fb_url"
         read -p "Press Enter..."
         
 
     elif [ "$choice" = "2" ]; then
-        read -p "Video file name (nasa loob ng ATOOLS): " v_name
-        read -p "Audio file name (nasa loob ng ATOOLS): " a_name
+        read -p "Video file name (nasa loob ng ATOOLS v.mp4): " v_name
+        read -p "Audio file name (nasa loob ng ATOOLS a.m4a): " a_name
         ffmpeg -i "$BASE_DIR/$v_name" -i "$BASE_DIR/$a_name" -c copy "$BASE_DIR/combined.mp4"
         echo "Saved: $BASE_DIR/combined.mp4"
         read -p "Press Enter..."
