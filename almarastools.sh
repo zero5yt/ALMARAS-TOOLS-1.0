@@ -49,6 +49,8 @@ fi
 
     if [ "$choice" = "1" ]; then
         read -p "Enter FB URL: " fb_url
+        
+        echo ""
         echo "Pumili ng Quality:"
         echo "  A. BEST QUALITY (1080p, may merge process)"
         echo "  B. STORAGE FRIENDLY (720p, direct download)"
@@ -65,6 +67,7 @@ fi
             yt-dlp --restrict-filenames -f "best" -o "$BASE_DIR/VIDEO_%(id)s.%(ext)s" "$fb_url"
         fi
         
+        echo ""
         if [ $? -eq 0 ]; then
             echo "[*] Download Successful!"
         else
