@@ -12,23 +12,34 @@ if [ ! -f "$KEY_FILE" ]; then
 fi
 
 ABYSS_API_KEY=$(cat "$KEY_FILE")
-URL=$1
+TARGET=$1
 
-# 2. Kunin ang original filename mula sa URL (para hindi movie.mp4 lang)
-# Ang sed 's/%20/ /g' ay para palitan yung %20 (space sa URL) ng totoong space
-FILENAME=$(basename "$URL" | sed 's/%20/ /g')
+# 3. Check kung local file ba o URL ang pinasa
+if [ -f "$TARGET" ]; then
+    # Kung File sa folder
+    FILENAME=$(basename "$TARGET")
+    FILE_PATH="$TARGET"
+    echo "Using local file: $FILENAME"
+else
+    # Kung URL (Download muna)
+    FILENAME=$(basename "$TARGET" | sed 's/%20/ /g')
+    FILE_PATH="$FILENAME"
+    echo "Downloading $FILENAME..."
+    wget -O "$FILENAME" "$TARGET"
+fi
 
-# 3. Download ang file gamit ang tamang pangalan
-echo "Downloading $FILENAME..."
-wget -O "$FILENAME" "$URL"
-
-# 4. Upload sa Abyss gamit ang tamang filename
-if [ -f "$FILENAME" ]; then
+# 4. Upload sa Aby
+if [ -f "$FILE_PATH" ]; then
     echo "Uploading to Aby..."
-    curl -# -F "file=@$FILENAME;filename=$FILENAME;type=video/mp4" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
-    # 5. Clean up (Burahin ang file pagkatapos ma-upload)
-    rm "$FILENAME"
+# Ito ay kukuha ng file, dadaan sa pv (para sa bar), at ipapasa sa curl
+pv "$FILE_PATH" | curl -F "file=@-;filename=$FILENAME;type=video/mp4" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"    
+
+ 
+    # 5. Clean up (Burahin lang kung hindi ito galing sa ATOOLS folder)
+    if [[ "$FILE_PATH" != /storage/emulated/0/Download/ATOOLS/* ]]; then
+        rm "$FILE_PATH"
+    fi
     echo -e "\nUpload to Aby Done!"
 else
-    echo "Error: Download failed."
+    echo "Error: File/Download failed."
 fi
