@@ -128,7 +128,7 @@ fi
         echo "  A. Upload as VIDEO (may preview/thumbnail)"
         echo "  B. Upload as FILE (mas mabilis)"
         read -p "Type A or B: " upload_type
-        read -p "Full path Copy mo To👉 /sdcard/Download/ATOOLS/videonamemo.mp4 👈: " video_path
+        read -p "Full path Copy mo To👉 /storage/emulated/0/Download/ATOOLS/Video.mp4 👈: " video_path
         read -p "Caption: " caption
         
         if [ -f "$video_path" ]; then
@@ -160,9 +160,24 @@ fi
         fi
         
         elif [ "$choice" = "9" ]; then
-        read -p "Enter Abyss Download Link: " link_url
+    echo "[a] Paste .MP4 Link"
+    echo "[b] Get .MP4 from /storage/emulated/0/Download/ATOOLS/"
+    read -p "Pili ka (a/b): " sub_choice
+
+    if [ "$sub_choice" = "a" ]; then
+        read -p "Enter Aby Download Link: " link_url
         bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
-        read -p "Press Enter to continue..."
+    
+    elif [ "$sub_choice" = "b" ]; then
+        TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
+        echo "Files sa $TARGET_DIR:"
+        ls -1 "$TARGET_DIR"/*.mp4
+        read -p "I-type ang filename (ex: Rampage 2018 Tagalog Dubbed.mp4): " filename
+        
+        # Dito natin ididikit ang path at gagamit ng quotes
+        bash "$SCRIPT_DIR/upload_aby.sh" "$TARGET_DIR/$filename"
+    fi
+    read -p "Press Enter to continue..."
 
     elif [ "$choice" = "10" ]; then
         read -p "Enter URL: " url
