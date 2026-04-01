@@ -31,9 +31,9 @@ fi
 # 4. Upload sa Aby
 if [ -f "$FILE_PATH" ]; then
     echo "Uploading to Aby..."
-# Ito ay kukuha ng file, dadaan sa pv (para sa bar), at ipapasa sa curl
-pv "$FILE_PATH" | curl -F "file=@-;filename=$FILENAME;type=video/mp4" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"    
+#curl to loading
 
+curl -# -F "file=@$FILE_PATH;filename=$FILENAME;type=video/mp4" -F "fld_id=$FLD_ID" "http://up.abyss.to/$ABYSS_API_KEY"
  
     # 5. Clean up (Burahin lang kung hindi ito galing sa ATOOLS folder)
     if [[ "$FILE_PATH" != /storage/emulated/0/Download/ATOOLS/* ]]; then
