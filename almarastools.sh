@@ -231,6 +231,7 @@ elif [ "$choice" = "13" ]; then
                 python -m http.server 8080 > /dev/null 2>&1 &
                 echo -e "${YELLOW}[+] Server STARTED.${NC}"
             fi
+          fi
         fi
         read -p "Press Enter to return to menu..."
     elif [ "$choice" = "0" ]; then
