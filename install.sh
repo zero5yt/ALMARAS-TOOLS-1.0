@@ -16,6 +16,15 @@ pkg update -y && pkg upgrade -y
 echo "[*] Installing required packages..."
 
 pkg install -y git python ffmpeg ncurses-utils pv curl wget
+
+# 2.5 Download at Setup Ngrok
+echo "[*] Installing Ngrok..."
+wget https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz
+tar -xvzf ngrok-v3-stable-linux-arm64.tgz
+chmod +x ngrok
+mv ngrok $PREFIX/bin/
+rm ngrok-v3-stable-linux-arm64.tgz
+
 # 3. Setup Storage (para makapag-save sa /sdcard/Download)
 echo "[*] Setting up storage..."
 termux-setup-storage
