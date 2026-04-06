@@ -210,9 +210,7 @@ fi
         python -m http.server 8080 > /dev/null 2>&1 &
         echo "[!] Python Server running in background."
         echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}ngrok http 8080${NC}"
-        read -p "Press Enter to return to menu..."
-
-        
+        read -p "Press Enter to return to menu..."  
 elif [ "$choice" = "13" ]; then
         clear
         echo "--- SERVER MANAGER ---"
@@ -231,9 +229,9 @@ elif [ "$choice" = "13" ]; then
                 python -m http.server 8080 > /dev/null 2>&1 &
                 echo -e "${YELLOW}[+] Server STARTED.${NC}"
             fi
-          fi
         fi
         read -p "Press Enter to return to menu..."
+
     elif [ "$choice" = "0" ]; then
         exit 0
     else
