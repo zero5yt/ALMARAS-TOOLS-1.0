@@ -34,6 +34,7 @@ clean_menu() {
     echo "  10  Download Any Video (YT/FB/TikTok/Etc"
     echo "  11  Reset Login Session"
     echo "  12 Start Ngrok Server (Port 8080)"
+    echo "  13 stop/start"
     echo "  0  Exit"
     echo ""
 }
@@ -211,6 +212,27 @@ fi
         echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}ngrok http 8080${NC}"
         read -p "Press Enter to return to menu..."
 
+        
+elif [ "$choice" = "13" ]; then
+        clear
+        echo "--- SERVER MANAGER ---"
+        if pgrep -f "python -m http.server" > /dev/null; then
+            echo -e "${RED}[!] Server is RUNNING.${NC}"
+            read -p "Stop server? (y/n): " stop_choice
+            if [ "$stop_choice" = "y" ]; then
+                pkill -f "python -m http.server"
+                echo -e "${YELLOW}[-] Server STOPPED.${NC}"
+            fi
+        else
+            echo -e "${BLUE}[!] Server is NOT running.${NC}"
+            read -p "Start server? (y/n): " start_choice
+            if [ "$start_choice" = "y" ]; then
+                cd "$BASE_DIR"
+                python -m http.server 8080 > /dev/null 2>&1 &
+                echo -e "${YELLOW}[+] Server STARTED.${NC}"
+            fi
+        fi
+        read -p "Press Enter to return to menu..."
     elif [ "$choice" = "0" ]; then
         exit 0
     else
