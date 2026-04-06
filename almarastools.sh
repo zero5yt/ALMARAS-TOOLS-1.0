@@ -33,6 +33,7 @@ clean_menu() {
     echo "  9  Upload Aby"
     echo "  10  Download Any Video (YT/FB/TikTok/Etc"
     echo "  11  Reset Login Session"
+    echo "  12 Start Ngrok Server (Port 8080)"
     echo "  0  Exit"
     echo ""
 }
@@ -194,6 +195,21 @@ fi
         rm -f config_api.txt
         echo "--- LOGIN RESET SUCCESSFUL ---"
         sleep 1
+
+    elif [ "$choice" = "12" ]; then
+        clear
+        echo "-- NGROK SERVER SETUP --"
+        read -p "Enter Ngrok Token (Enter to skip): " token
+        if [ ! -z "$token" ]; then
+            ngrok config add-authtoken "$token"
+            echo "[+] Token Saved!"
+        fi
+        cd "$BASE_DIR"
+        pkill -f "python -m http.server"
+        python -m http.server 8080 > /dev/null 2>&1 &
+        echo "[!] Python Server running in background."
+        echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}ngrok http 8080${NC}"
+        read -p "Press Enter to return to menu..."
 
     elif [ "$choice" = "0" ]; then
         exit 0
