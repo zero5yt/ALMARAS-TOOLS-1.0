@@ -18,12 +18,25 @@ clean_menu() {
     clear
     tput cup 0 0
     source "$SCRIPT_DIR/logo.sh"
+    
+    # Define Colors
+    GREEN='\033[0;32m'
+    RED='\033[0;31m'
+    NC='\033[0m'
+    
+    # Server Status Check
+    if pgrep -f "python -m http.server" > /dev/null; then
+        STATUS="${GREEN}ONLINE${NC}"
+    else
+        STATUS="${RED}OFFLINE${NC}"
+    fi
+
     echo -e "\n"
-    # LAHAT NG ECHO NA NASA LABAS, ILAGAY MO DITO SA LOOB NG FUNCTION:
     echo "  [Work Folder: $BASE_DIR]"
+    echo -e "  [Server Status: $STATUS]"
     echo ""
-    echo "  1  Download Facebook Video"
-    echo "  2  Combine Video + Audio"
+    echo "  1   Download Facebook Video"
+    echo "  2   Combine Video + Audio"
     echo "  3  Convert MKV to MP4"
     echo "  4  Cut Video"
     echo "  5  Add Subtitle"
