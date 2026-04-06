@@ -222,7 +222,7 @@ fi
         pkill -f "python -m http.server"
         python -m http.server 8080 > /dev/null 2>&1 &
         echo "[!] Python Server running in background."
-        echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}ngrok http 8080${NC}"
+        echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}./ngrok http 8080${NC}"
         read -p "Press Enter to return to menu..."  
 elif [ "$choice" = "13" ]; then
         clear
