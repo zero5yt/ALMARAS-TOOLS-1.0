@@ -187,7 +187,7 @@ fi
         TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
         echo "Files sa $TARGET_DIR:"
         ls -1 "$TARGET_DIR"/*.mp4
-        read -p "I-type ang filename (ex: Rampage 2018 Tagalog Dubbed.mp4): " filename
+        read -p "I-type ang filename (ex:StreamixMovie Tagalog.mp4): " filename
         
         # Dito natin ididikit ang path at gagamit ng quotes
         bash "$SCRIPT_DIR/upload_aby.sh" "$TARGET_DIR/$filename"
