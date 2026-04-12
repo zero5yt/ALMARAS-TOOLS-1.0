@@ -15,6 +15,7 @@ if [ ! -d "/sdcard/Download" ]; then
 fi
 
 clean_menu() {
+clean_menu() {
     clear
     tput cup 0 0
     source "$SCRIPT_DIR/logo.sh"
@@ -37,18 +38,19 @@ clean_menu() {
     echo ""
     echo "  1   Download Facebook Video"
     echo "  2   Combine Video + Audio"
-    echo "  3  Convert MKV to MP4"
-    echo "  4  Cut Video"
-    echo "  5  Add Subtitle"
-    echo "  6  Update yt-dlp"
-    echo "  7  Combine M4S Video + Audio"
-    echo "  8  Upload to RoderickMovies (Channel)"
-    echo "  9  Upload Aby"
-    echo "  10  Download Any Video (YT/FB/TikTok/Etc"
-    echo "  11  Reset Login Session"
-    echo "  12 Start Ngrok Server (Port 8080)"
-    echo "  13 stop/start"
-    echo "  0  Exit"
+    echo "  3   Convert MKV to MP4"
+    echo "  4   Cut Video"
+    echo "  5   Add Subtitle"
+    echo "  6   Update yt-dlp"
+    echo "  7   Combine M4S Video + Audio"
+    echo "  8   Upload to RoderickMovies (Channel)"
+    echo "  9   Upload Aby"
+    echo "  10  Upload Streamtape"
+    echo "  11  Download Any Video (YT/FB/TikTok/Etc)"
+    echo "  12  Reset Login Session"
+    echo "  13  Start Ngrok Server (Port 8080)"
+    echo "  14  stop/start"
+    echo "  0   Exit"
     echo ""
 }
 
@@ -175,26 +177,40 @@ fi
         fi
         
         elif [ "$choice" = "9" ]; then
-    echo "[a] Paste .MP4 Link"
-    echo "[b] Get .MP4 from /storage/emulated/0/Download/ATOOLS/"
-    read -p "Pili ka (a/b): " sub_choice
+        echo "[a] Paste .MP4 Link"
+        echo "[b] Get .MP4 from /storage/emulated/0/Download/ATOOLS/"
+        read -p "Pili ka (a/b): " sub_choice
 
-    if [ "$sub_choice" = "a" ]; then
-        read -p "Enter Aby Download Link: " link_url
-        bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
-    
-    elif [ "$sub_choice" = "b" ]; then
-        TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
-        echo "Files sa $TARGET_DIR:"
-        ls -1p "$TARGET_DIR" | grep -v / | grep ".mp4$"
-        read -p "I-type ang filename (ex:StreamixMovie Tagalog.mp4): " filename
-        
-        # Dito natin ididikit ang path at gagamit ng quotes
-        bash "$SCRIPT_DIR/upload_aby.sh" "$TARGET_DIR/$filename"
-    fi
-    read -p "Press Enter to continue..."
+        if [ "$sub_choice" = "a" ]; then
+            read -p "Enter Aby Download Link: " link_url
+            bash "$SCRIPT_DIR/upload_aby.sh" "$link_url"
+        elif [ "$sub_choice" = "b" ]; then
+            TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
+            echo "Files sa $TARGET_DIR:"
+            ls -1p "$TARGET_DIR" | grep -v / | grep ".mp4$"
+            read -p "I-type ang filename: " filename
+            bash "$SCRIPT_DIR/upload_aby.sh" "$TARGET_DIR/$filename"
+        fi
+        read -p "Press Enter to continue..."
 
     elif [ "$choice" = "10" ]; then
+        echo "[a] Paste .MP4 Link"
+        echo "[b] Get .MP4 from /storage/emulated/0/Download/ATOOLS/"
+        read -p "Pili ka (a/b): " sub_choice
+
+        if [ "$sub_choice" = "a" ]; then
+            read -p "Enter Video Link for Streamtape: " link_url
+            bash "$SCRIPT_DIR/upload_st.sh" "$link_url"
+        elif [ "$sub_choice" = "b" ]; then
+            TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
+            echo "Files sa $TARGET_DIR:"
+            ls -1p "$TARGET_DIR" | grep -v / | grep ".mp4$"
+            read -p "I-type ang filename: " filename
+            bash "$SCRIPT_DIR/upload_st.sh" "$TARGET_DIR/$filename"
+        fi
+        read -p "Press Enter to continue..."
+
+    elif [ "$choice" = "11" ]; then
         read -p "Enter URL: " url
         echo "Downloading in Best Quality (MP4)..."
         yt-dlp -f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv+ba/b" \
@@ -203,14 +219,14 @@ fi
                -o "$BASE_DIR/%(title)s.%(ext)s" "$url"
         read -p "Download Finished! Press Enter to continue..."
 
-    elif [ "$choice" = "11" ]; then
+    elif [ "$choice" = "12" ]; then
         clear
         rm -f user_session.session
         rm -f config_api.txt
         echo "--- LOGIN RESET SUCCESSFUL ---"
         sleep 1
 
-    elif [ "$choice" = "12" ]; then
+    elif [ "$choice" = "13" ]; then
         clear
         echo "-- NGROK SERVER SETUP --"
         read -p "Enter Ngrok Token (Enter to skip): " token
@@ -222,9 +238,9 @@ fi
         pkill -f "python -m http.server"
         python -m http.server 8080 > /dev/null 2>&1 &
         echo "[!] Python Server running in background."
-        echo -e "[!] OPEN NEW SESSION AND TYPE: ${BLUE}./ngrok http 8080${NC}"
         read -p "Press Enter to return to menu..."  
-elif [ "$choice" = "13" ]; then
+
+    elif [ "$choice" = "14" ]; then
         clear
         echo "--- SERVER MANAGER ---"
         if pgrep -f "python -m http.server" > /dev/null; then
@@ -244,7 +260,6 @@ elif [ "$choice" = "13" ]; then
             fi
         fi
         read -p "Press Enter to return to menu..."
-
     elif [ "$choice" = "0" ]; then
         exit 0
     else
