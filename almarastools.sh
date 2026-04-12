@@ -186,7 +186,7 @@ fi
     elif [ "$sub_choice" = "b" ]; then
         TARGET_DIR="/storage/emulated/0/Download/ATOOLS"
         echo "Files sa $TARGET_DIR:"
-        ls -1 "$TARGET_DIR"/*.mp4
+        ls -1p "$TARGET_DIR" | grep -v / | grep ".mp4$"
         read -p "I-type ang filename (ex:StreamixMovie Tagalog.mp4): " filename
         
         # Dito natin ididikit ang path at gagamit ng quotes
