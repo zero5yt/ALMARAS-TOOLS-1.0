@@ -15,7 +15,6 @@ if [ ! -d "/sdcard/Download" ]; then
 fi
 
 clean_menu() {
-clean_menu() {
     clear
     tput cup 0 0
     source "$SCRIPT_DIR/logo.sh"
